@@ -25,21 +25,20 @@ const CONFIG = {
   // `id` must be a short unique slug (no spaces). `name` is what people see.
   gyms: [
     { id: "home",  name: "Home Gym" },
-    { id: "comm",  name: "Commercial Gym" }
+    { id: "hudik", name: "Hudik Gym" }
   ],
 
   // Training split. Most people use Push/Pull/Legs but you can rename
   // these to "Upper", "Lower", "Full Body", "Day A", anything.
   days: [
-    { id: "push", name: "Push" },
-    { id: "pull", name: "Pull" },
-    { id: "legs", name: "Legs" }
+    { id: "upper", name: "Upper" },
+    { id: "lower", name: "Lower" }
   ],
 
   // Split rotation — the order your training days cycle through. Use day
   // ids from `days` above, plus "rest" for off-days. The pill at the top
   // of the app reads this + splitAnchor to compute "what day is today".
-  splitRotation: ["push", "pull", "legs", "rest"],
+  splitRotation: ["upper", "lower", "rest"],
 
   // Anchor: pair a real calendar date with which split day fell on it.
   // The rotation advances from this point. Set `date` to a recent day
@@ -78,15 +77,37 @@ const CONFIG = {
   // First-run defaults. Once a user logs anything, they edit through
   // the in-app + / gear buttons; this block stays as the seed.
   defaultExercises: [
-    { name: "Bench press",     gym: "comm", day: "push", repMin: 5, repMax: 8,  step: 2.5, startWeight: 60 },
-    { name: "Overhead press",  gym: "comm", day: "push", repMin: 5, repMax: 8,  step: 2.5, startWeight: 35 },
-    { name: "Tricep pushdown", gym: "comm", day: "push", repMin: 8, repMax: 12, step: 2.5, startWeight: 25 },
-    { name: "Pull-ups",        gym: "both", day: "pull", repMin: 5, repMax: 10, step: 1,   startWeight: 0, bw: true },
-    { name: "Barbell row",     gym: "comm", day: "pull", repMin: 6, repMax: 10, step: 2.5, startWeight: 50 },
-    { name: "Bicep curl",      gym: "comm", day: "pull", repMin: 8, repMax: 12, step: 1.25,startWeight: 15 },
-    { name: "Back squat",      gym: "comm", day: "legs", repMin: 5, repMax: 8,  step: 5,   startWeight: 80 },
-    { name: "Romanian deadlift", gym: "comm", day: "legs", repMin: 6, repMax: 10, step: 5, startWeight: 60 },
-    { name: "Leg press",       gym: "comm", day: "legs", repMin: 8, repMax: 12, step: 5,   startWeight: 100 }
+    // Upper
+    { name: "Bench press",                 gym: "hudik", day: "upper", repMin: 5,  repMax: 8,  step: 2.5,  startWeight: 60 },
+    { name: "Pause bench press",           gym: "hudik", day: "upper", repMin: 3,  repMax: 6,  step: 2.5,  startWeight: 50 },
+    { name: "Incline smith machine press", gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 2.5,  startWeight: 40 },
+    { name: "Chest press machine",         gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 5,    startWeight: 50 },
+    { name: "Pec deck",                    gym: "hudik", day: "upper", repMin: 10, repMax: 15, step: 5,    startWeight: 30 },
+    { name: "Shoulder press machine",      gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 5,    startWeight: 40 },
+    { name: "Lateral raise machine",       gym: "hudik", day: "upper", repMin: 10, repMax: 15, step: 2.5,  startWeight: 15 },
+    { name: "Cable lateral raise",         gym: "hudik", day: "upper", repMin: 10, repMax: 15, step: 2.5,  startWeight: 10 },
+    { name: "JM press",                    gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 2.5,  startWeight: 20 },
+    { name: "Single arm tricep pushdown",  gym: "hudik", day: "upper", repMin: 10, repMax: 15, step: 2.5,  startWeight: 15 },
+    { name: "Overhead tricep extension",   gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 2.5,  startWeight: 20 },
+    { name: "Lat pulldown",                gym: "hudik", day: "upper", repMin: 6,  repMax: 10, step: 5,    startWeight: 50 },
+    { name: "Lat pulldown machine",        gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 5,    startWeight: 45 },
+    { name: "Machine row",                 gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 5,    startWeight: 50 },
+    { name: "Kelso shrug",                 gym: "hudik", day: "upper", repMin: 10, repMax: 15, step: 5,    startWeight: 40 },
+    { name: "Reverse fly",                 gym: "hudik", day: "upper", repMin: 10, repMax: 15, step: 2.5,  startWeight: 15 },
+    { name: "Preacher curl",               gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 2.5,  startWeight: 30 },
+    { name: "Single arm preacher curl",    gym: "hudik", day: "upper", repMin: 10, repMax: 15, step: 2.5,  startWeight: 15 },
+    { name: "Dumbbell preacher curl",      gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 2.5,  startWeight: 15 },
+    { name: "Preacher hammer curl",        gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 2.5,  startWeight: 15 },
+    { name: "Hammer curl",                 gym: "hudik", day: "upper", repMin: 8,  repMax: 12, step: 1.25, startWeight: 15 },
+    { name: "Bayesian curl",               gym: "hudik", day: "upper", repMin: 10, repMax: 15, step: 2.5,  startWeight: 10 },
+    // Lower
+    { name: "Squat",                       gym: "hudik", day: "lower", repMin: 5,  repMax: 8,  step: 5,    startWeight: 80 },
+    { name: "Leg press",                   gym: "hudik", day: "lower", repMin: 8,  repMax: 12, step: 5,    startWeight: 100 },
+    { name: "Leg extension",               gym: "hudik", day: "lower", repMin: 10, repMax: 15, step: 5,    startWeight: 40 },
+    { name: "Leg curl",                    gym: "hudik", day: "lower", repMin: 10, repMax: 15, step: 5,    startWeight: 40 },
+    { name: "SLDL",                        gym: "hudik", day: "lower", repMin: 6,  repMax: 10, step: 5,    startWeight: 60 },
+    { name: "Calf press",                  gym: "hudik", day: "lower", repMin: 10, repMax: 20, step: 5,    startWeight: 80 },
+    { name: "Ab machine",                  gym: "hudik", day: "lower", repMin: 10, repMax: 15, step: 5,    startWeight: 30 }
   ]
 };
 </script>
